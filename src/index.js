@@ -1,12 +1,15 @@
-import { StrictMode } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-
 import App from "./App";
-
-const rootElement = document.getElementById("root");
+import { DataProvider } from "./context/dataContext";
+import createMockServer from "./api/mockServer";
+// import reportWebVitals from './reportWebVitals';
+createMockServer();
 ReactDOM.render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-  rootElement
+  <React.StrictMode>
+    <DataProvider>
+      <App />
+    </DataProvider>
+  </React.StrictMode>,
+  document.getElementById("root")
 );

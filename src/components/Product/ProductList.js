@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect } from "react";
-import { useData } from "../context/dataContext";
+import { useData } from "../../context/dataContext";
 import ProductCard from "./ProductCard";
 // import '../styles/productList.css'
 const ProductList = () => {
@@ -8,6 +8,7 @@ const ProductList = () => {
     state: { data, loading },
     dispatch
   } = useData();
+
   useEffect(() => {
     (async () => {
       try {

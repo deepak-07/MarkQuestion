@@ -1,6 +1,6 @@
 import React from "react";
-import { useData } from ".../context/dataContext.js";
-// import '../styles/productCard.css'
+import { useData } from "../../context/dataContext";
+
 const ProductCard = ({ product }) => {
   const {
     state: { cart, wishList },
@@ -16,11 +16,7 @@ const ProductCard = ({ product }) => {
       return acc;
     }, "");
   };
-  //  can be done using .some too =>
-  /*if(wishList.some(curr => curr.id === prodId) === true) {
-         return 'wishlisted'
-     }
-     return ''*/
+
   const addToCartHandler = (prod) => {
     dispatch({ type: "ADD_TO_CART", payload: prod });
   };
@@ -36,30 +32,35 @@ const ProductCard = ({ product }) => {
   };
   //console.log(wishList)
   return (
-    <div className="card card__with__overlayButton card__shadow">
-      <img className="image__responsive" src={image} alt="img" />
-      <div className="card__body__container">
-        <h5 className="card__header">{productName}</h5>
-        <div>
-          <small className="rating">{ratings}</small>
-          <i className="fas fa-star"></i>
+    <div class="card">
+      <div class="card-badge cb-horizontal"> Sale</div>
+      <div class="card-body">
+        <img src={image} alt="" />
+        <div class="card-title">
+          <h2> {productName}</h2>
         </div>
-        <p className="card__body">{price}</p>
-      </div>
-      <i
-        className={`heart fas fa-heart ${isWishListed(id)}`}
-        onClick={() => addToWishListHandler(id)}
-      ></i>
-      {isInCart(id) ? (
-        <button className="btn btn-secondary">Go To Cart</button>
-      ) : (
+        {/* <p>Women Black & Green Printed Straight Kurta</p> */}
+        <span class="price">Rs. 688</span>
+        <small className="rating">{ratings}</small>
         <button
-          className="btn btn-primary"
-          onClick={() => addToCartHandler(product)}
+          class="btn btn-floating"
+          onClick={() => addToWishListHandler(id)}
         >
-          Add To Cart
+          <i className={`heart fas fa-heart ${isWishListed(id)}`}></i>
         </button>
-      )}
+
+        {isInCart(id) ? (
+          <button className="btn btn-secondary">Go To Cart</button>
+        ) : (
+          <button
+            className="btn btn-primary"
+            onClick={() => addToCartHandler(product)}
+          >
+            {" "}
+            Add To Cart{" "}
+          </button>
+        )}
+      </div>
     </div>
   );
 };
