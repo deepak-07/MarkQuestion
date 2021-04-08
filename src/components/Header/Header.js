@@ -1,15 +1,22 @@
 import React from "react";
 import "./Header.css";
+import { Link } from "react-router-dom";
 function Header() {
   return (
     <div className="header">
       <div class="nav-bar center-nav">
-        <span class="nav-logo">
-          <li>Ecom</li>
-        </span>
+        <Link to="">
+          <span class="nav-logo">
+            <li>MarkQuestion</li>
+          </span>
+        </Link>
         <div class="nav-pages">
-          <li>Products</li>
-          <li>Cart</li>
+          <Link to="/Product">
+            <li>Products</li>
+          </Link>
+          <Link to="/Cart">
+            <li>Cart</li>
+          </Link>
           <li class="nav-active">Contact</li>
         </div>
       </div>

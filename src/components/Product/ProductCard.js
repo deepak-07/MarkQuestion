@@ -1,5 +1,6 @@
 import React from "react";
 import { useData } from "../../context/dataContext";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const {
@@ -32,36 +33,38 @@ const ProductCard = ({ product }) => {
   };
   //console.log(wishList)
   return (
-    <div class="card">
-      <div class="card-badge cb-horizontal"> Sale</div>
-      <div class="card-body">
-        <img src={image} alt="" />
-        <div class="card-title">
-          <h2> {productName}</h2>
-        </div>
-        {/* <p>Women Black & Green Printed Straight Kurta</p> */}
-        <span class="price">Rs. 688</span>
-        <small className="rating">{ratings}</small>
-        <button
-          class="btn btn-floating"
-          onClick={() => addToWishListHandler(id)}
-        >
-          <i className={`heart fas fa-heart ${isWishListed(id)}`}></i>
-        </button>
-
-        {isInCart(id) ? (
-          <button className="btn btn-secondary">Go To Cart</button>
-        ) : (
+    <Link to={`/Productlist/${id}`}>
+      <div class="card">
+        <div class="card-badge cb-horizontal"> Sale</div>
+        <div class="card-body">
+          <img src={image} alt="" />
+          <div class="card-title">
+            <h2> {productName}</h2>
+          </div>
+          {/* <p>Women Black & Green Printed Straight Kurta</p> */}
+          <span class="price">Rs. 688</span>
+          <small className="rating">{ratings}</small>
           <button
-            className="btn btn-primary"
-            onClick={() => addToCartHandler(product)}
+            class="btn btn-floating"
+            onClick={() => addToWishListHandler(id)}
           >
-            {" "}
-            Add To Cart{" "}
+            <i className="heart fas fa-heart">{`${isWishListed(id)}`}</i>
           </button>
-        )}
+
+          {isInCart(id) ? (
+            <button className="btn btn-secondary">Go To Cart</button>
+          ) : (
+            <button
+              className="btn btn-primary"
+              onClick={() => addToCartHandler(product)}
+            >
+              {" "}
+              Add To Cart{" "}
+            </button>
+          )}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
